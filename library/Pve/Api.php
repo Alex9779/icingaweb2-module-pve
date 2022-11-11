@@ -182,19 +182,26 @@ class Api
 
                                 $ipv4 = [];
                                 $ipv6 = [];
-                                foreach ($row['ip-addresses'] as $ip) {
-                                    if ($ip['ip-address-type'] === 'ipv4') {
-                                        $ipv4[] = sprintf("%s/%s", $ip['ip-address'], $ip['prefix']);
-                                    } else {
-                                        $ipv6[] = sprintf("%s/%s", $ip['ip-address'], $ip['prefix']);
-                                    }
-                                }
-
-                                $interfaces[$row['name']] = [
-                                    'hwaddr' => $row['hardware-address'],
-                                    'ipv4' => $ipv4,
-                                    'ipv6' => $ipv6
-                                ];
+				if (isset($row['ip-addresses'])) {
+					foreach ($row['ip-addresses'] as $ip) {
+					    if ($ip['ip-address-type'] === 'ipv4') {
+						$ipv4[] = sprintf("%s/%s", $ip['ip-address'], $ip['prefix']);
+					    } else {
+						$ipv6[] = sprintf("%s/%s", $ip['ip-address'], $ip['prefix']);
+					    }
+					}
+				}
+				
+				$hwaddr = "";
+				if (isset($row['hardware-address'])) {
+					$hwadrr = $row['hardware-address'];
+				}
+				$interfaces[$row['name']] = [
+				    'hwaddr' => ,
+				    'ipv4' => $ipv4,
+				    'ipv6' => $ipv6
+				];
+				}
                             }
                         }
 
