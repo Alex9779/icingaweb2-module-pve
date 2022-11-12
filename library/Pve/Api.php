@@ -191,13 +191,13 @@ class Api
 					    }
 					}
 				}
-				
+
 				$hwaddr = "";
 				if (isset($row['hardware-address'])) {
 					$hwadrr = $row['hardware-address'];
 				}
 				$interfaces[$row['name']] = [
-				    'hwaddr' => ,
+				    'hwaddr' => $hwaddr,
 				    'ipv4' => $ipv4,
 				    'ipv6' => $ipv6
 				];
